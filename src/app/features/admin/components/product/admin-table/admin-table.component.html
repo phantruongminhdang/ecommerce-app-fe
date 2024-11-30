@@ -1,0 +1,75 @@
+<div class="overflow-x-auto">
+    <table class="w-full bg-white">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Name
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Code
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Category
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Price
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Quantity
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Image
+                </th>
+                <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            <tr *ngFor="let product of productList; let even = even" [ngClass]="{'bg-gray-50': even}">
+                <!-- (click)="onEditProduct(product.id)"> -->
+                <td
+                    class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 border-r border-gray-200 text-center">
+                    {{ product.name }}</td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 border-r border-gray-200">{{
+                    product.code }}</td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 border-r border-gray-200 text-center">
+                    {{ product.categoryName }}</td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 border-r border-gray-200 text-center">
+                    {{
+                    product.price|currency:'VND' }}
+                </td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 border-r border-gray-200 text-center">
+                    {{
+                    product.quantity }}</td>
+                <td
+                    class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 border-r border-gray-200 flex justify-center">
+                    <div class="w-[100px] h-[100px] ">
+                        <img class="object-contain aspect-square"
+                            [src]="product?.imageUrl != null
+                            ? 
+                            product?.imageUrl
+                            : 
+                            'https://media.istockphoto.com/id/1147544807/vi/vec-to/h%C3%ACnh-thu-nh%E1%BB%8F-%C4%91%E1%BB%93-h%E1%BB%8Da-vector.jpg?s=612x612&w=0&k=20&c=bPh3iqkZIarqqYwyC2K8aAm8ZaNE6r4jCm7IGcZrK9M='"
+                            alt="Card image">
+                    </div>
+                </td>
+                <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-center">
+                    <div class="grid grid-cols-2">
+                        <div class="flex justify-center">
+                            <svg class="text-yellow-600 hover:text-yellow-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                viewBox="0 0 24 24" (click)="onEditProduct(product.id)">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                            </svg>
+                        </div>
+                        <div class="flex justify-center">
+                            <svg class="text-red-600 hover:text-red-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                viewBox="0 0 24 24" (click)="onDeleteProduct(product.id)">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                            </svg>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

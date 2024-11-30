@@ -1,0 +1,28 @@
+<div class="flex-1 h-full">
+    <div class="">
+        <div class="flex justify-between items-center mb-4">
+            <div class="text-2xl font-bold mb-4">Product Management</div>
+            <div>
+                <button
+                    class="px-2 py-1 border-2 border-gray-500 rounded bg-gray-500 text-white hover:bg-gray-800 hover:border-gray-800"
+                    (click)="onShowAddProductPopup()">+
+                    Create
+                    Product</button>
+            </div>
+        </div>
+        @if(isLoading$ | async) {
+        <!-- Display your loading spinner or skeleton here -->
+        <app-product-table-skeleton></app-product-table-skeleton>
+        } @else {
+        <app-admin-table (editProduct)="onEditProduct($event)" (deleteProduct)="onShowDeleteProductPopup($event)"
+            [productList]="(paginationProduct$ | async)?.items || null"></app-admin-table>
+        }
+    </div>
+    <app-table-pagination-admin [route]="'/admin/products'"
+        [pagination]="paginationProduct$ | async"></app-table-pagination-admin>
+
+</div>
+<app-popup-product-admin *ngIf="showModifyProduct" [productId]="selectedUpdateProductId" [categoryList]="categories"
+    (save)="onSaveProduct($event)" (close)="onCloseModifyProduct()"></app-popup-product-admin>
+<app-popup-create-product *ngIf="showCreateProduct" [categoryList]="categories" (add)="onAddProduct($event)"
+    (close)="onCloseCreateProduct()"></app-popup-create-product>
